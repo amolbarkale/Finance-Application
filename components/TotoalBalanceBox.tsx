@@ -1,4 +1,7 @@
+import { formatAmount } from "@/lib/utils";
 import React from "react";
+import AnimatedCounter from "./AnimatedCounter";
+import DoughnutChart from "./DoughnutChart";
 
 const TotoalBalanceBox = ({
   accounts,
@@ -7,10 +10,19 @@ const TotoalBalanceBox = ({
 }: TotlaBalanceBoxProps) => {
   return (
     <section className="total-balance">
-      <div className="total-blance-chart">{/* DOnutsChart */}</div>
+      <div className="total-blance-chart">
+        <DoughnutChart accounts={accounts} />
+      </div>
 
       <div className="flex flex-col gap-6">
-        <div className="header-2">Bank Accounts: {totalBanks}</div>
+        <h2 className="header-2">Bank Accounts: {totalBanks}</h2>
+        <div className="flex flex-col gap-2">
+          <p className="total-balance-label">Total Current Balance</p>
+          <div className="total-balance-amount flec-center gap-2">
+            <AnimatedCounter amount={totalCurrentBalance} />
+            {formatAmount(totalCurrentBalance)}
+          </div>
+        </div>
       </div>
     </section>
   );
